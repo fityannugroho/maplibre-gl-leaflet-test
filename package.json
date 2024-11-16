@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix && biome check --write ."
   },
   "dependencies": {
+    "@maplibre/maplibre-gl-leaflet": "^0.0.22",
     "leaflet": "^1.9.4",
     "next": "14.2.18",
     "react": "^18",
