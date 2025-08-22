@@ -9,11 +9,15 @@
         "https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
       ],
       "tileSize": 256,
-      "attribution": "© CARTO, © OpenStreetMap contributors"
+      "attribution": "<a href=\"https://carto.com/attributions\">© CARTO</a>, <a href=\"https://www.openstreetmap.org/copyright\">© OpenStreetMap contributors</a>"
     }
   },
   "layers": [
-    { "id": "background", "type": "background", "paint": { "background-color": "#0b0b0b" } },
+    {
+      "id": "background",
+      "type": "background",
+      "paint": { "background-color": "#0b0b0b" }
+    },
     { "id": "carto-dark", "type": "raster", "source": "carto-dark" }
   ]
 }
