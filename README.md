@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Purpose
 
-## Getting Started
+This repo describes how to run the Next.js test app that verifies the
+`maplibre-gl-leaflet` plugin correctly synchronizes MapLibre style/source
+attributions with Leaflet's attribution control (including when styles or
+sources change).
 
-First, run the development server:
+## Quick start — install & run locally (pnpm)
+
+1. Clone the test repo (if not already).
+
+2. Install dependencies and start the Next.js dev server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 (or the route this app uses).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running against a local development copy of `maplibre-gl-leaflet`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+When validating a patch you should run the test app against your local
+modified copy of `maplibre-gl-leaflet`. Use one of the methods below.
 
-## Learn More
+Option A — install local package path (recommended, simple)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# from inside the test app repo
+pnpm add /absolute/path/to/maplibre-gl-leaflet
+pnpm install
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Option B — pnpm link (iterative development)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. In your local `maplibre-gl-leaflet` repo:
 
-## Deploy on Vercel
+```bash
+# register the package globally
+pnpm link --global
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. In the test app repo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# link to the globally-registered package (replace with actual package name from package.json, e.g. "leaflet-maplibre-gl")
+pnpm link leaflet-maplibre-gl
+pnpm install
+pnpm dev
+```
+
+Option C — pack + install (deterministic)
+
+```bash
+# in the plugin repo
+pnpm pack
+# then in the test repo
+pnpm add ../maplibre-gl-leaflet/your-pkg-name-version.tgz
+pnpm install
+pnpm dev
+```
