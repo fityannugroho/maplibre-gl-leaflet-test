@@ -5,6 +5,8 @@ This repo describes how to run the Next.js test app that verifies the
 attributions with Leaflet's attribution control (including when styles or
 sources change).
 
+![demo](public/demo.gif)
+
 ## Quick start — install & run locally (pnpm)
 
 1. Clone the test repo (if not already).
